@@ -1,0 +1,190 @@
+fileFormatVersion: 2
+guid: dd25845a657ebe84b8d8b11e9247b755
+timeCreated: 1441521102
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Garage1
+    100004: Garage2
+    100006: Ground
+    100008: Floating_Island
+    100010: Floating_Island_Cover
+    100012: Dubstep_Cube
+    100014: Dubstep_Cube_MeshPart0
+    100016: Dubstep_Cube_MeshPart1
+    100018: Dubstep_Cube_MeshPart2
+    100020: Dubstep_Cube_MeshPart3
+    100022: Dubstep_Cube_MeshPart4
+    100024: Dubstep_Cube_MeshPart5
+    100026: Dubstep_Cube_MeshPart6
+    100028: Dubstep_Cube_MeshPart7
+    100030: Player_Scale
+    100032: Dubstep_Cube_Corner
+    100034: Dubstep_Cube_Corner_MeshPart0
+    100036: Dubstep_Cube_Corner_MeshPart1
+    100038: Dubstep_Cube_Cover
+    100040: Stair
+    100042: BOOM
+    100044: StairsL
+    100046: Stair_Col
+    100048: BOOM_Floors
+    400000: //RootNode
+    400002: Garage1
+    400004: Garage2
+    400006: Ground
+    400008: Floating_Island
+    400010: Floating_Island_Cover
+    400012: Dubstep_Cube
+    400014: Dubstep_Cube_MeshPart0
+    400016: Dubstep_Cube_MeshPart1
+    400018: Dubstep_Cube_MeshPart2
+    400020: Dubstep_Cube_MeshPart3
+    400022: Dubstep_Cube_MeshPart4
+    400024: Dubstep_Cube_MeshPart5
+    400026: Dubstep_Cube_MeshPart6
+    400028: Dubstep_Cube_MeshPart7
+    400030: Player_Scale
+    400032: Dubstep_Cube_Corner
+    400034: Dubstep_Cube_Corner_MeshPart0
+    400036: Dubstep_Cube_Corner_MeshPart1
+    400038: Dubstep_Cube_Cover
+    400040: Stair
+    400042: BOOM
+    400044: StairsL
+    400046: Stair_Col
+    400048: BOOM_Floors
+    2300000: Garage1
+    2300002: Garage2
+    2300004: Ground
+    2300006: Floating_Island
+    2300008: Floating_Island_Cover
+    2300010: Dubstep_Cube_MeshPart0
+    2300012: Dubstep_Cube_MeshPart1
+    2300014: Dubstep_Cube_MeshPart2
+    2300016: Dubstep_Cube_MeshPart3
+    2300018: Dubstep_Cube_MeshPart4
+    2300020: Dubstep_Cube_MeshPart5
+    2300022: Dubstep_Cube_MeshPart6
+    2300024: Dubstep_Cube_MeshPart7
+    2300026: Player_Scale
+    2300028: Dubstep_Cube_Corner
+    2300030: Dubstep_Cube_Corner_MeshPart0
+    2300032: Dubstep_Cube_Corner_MeshPart1
+    2300034: Dubstep_Cube_Cover
+    2300036: Stair
+    2300038: BOOM
+    2300040: StairsL
+    2300042: Stair_Col
+    2300044: BOOM_Floors
+    3300000: Garage1
+    3300002: Garage2
+    3300004: Ground
+    3300006: Floating_Island
+    3300008: Floating_Island_Cover
+    3300010: Dubstep_Cube_MeshPart0
+    3300012: Dubstep_Cube_MeshPart1
+    3300014: Dubstep_Cube_MeshPart2
+    3300016: Dubstep_Cube_MeshPart3
+    3300018: Dubstep_Cube_MeshPart4
+    3300020: Dubstep_Cube_MeshPart5
+    3300022: Dubstep_Cube_MeshPart6
+    3300024: Dubstep_Cube_MeshPart7
+    3300026: Player_Scale
+    3300028: Dubstep_Cube_Corner
+    3300030: Dubstep_Cube_Corner_MeshPart0
+    3300032: Dubstep_Cube_Corner_MeshPart1
+    3300034: Dubstep_Cube_Cover
+    3300036: Stair
+    3300038: BOOM
+    3300040: StairsL
+    3300042: Stair_Col
+    3300044: BOOM_Floors
+    4300000: Garage1
+    4300002: Ground
+    4300004: Garage2
+    4300006: Floating_Island
+    4300008: Floating_Island_Cover
+    4300010: Dubstep_Cube_MeshPart0
+    4300012: Dubstep_Cube_MeshPart1
+    4300014: Dubstep_Cube_MeshPart2
+    4300016: Dubstep_Cube_MeshPart3
+    4300018: Dubstep_Cube_MeshPart4
+    4300020: Dubstep_Cube_MeshPart5
+    4300022: Dubstep_Cube_MeshPart6
+    4300024: Dubstep_Cube_MeshPart7
+    4300026: Player_Scale
+    4300028: Dubstep_Cube_Corner
+    4300030: Dubstep_Cube_Corner_MeshPart0
+    4300032: Dubstep_Cube_Corner_MeshPart1
+    4300034: Dubstep_Cube_Cover
+    4300036: Stair
+    4300038: BOOM
+    4300040: StairsL
+    4300042: Stair_Col
+    4300044: BOOM_Floors
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

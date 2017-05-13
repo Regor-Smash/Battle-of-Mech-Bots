@@ -1,0 +1,116 @@
+fileFormatVersion: 2
+guid: e1493d68f3d49884cb557ed791a6c0a6
+timeCreated: 1484304661
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Dubstep_Cube_2
+    100004: Dubstep_Cube_Corner
+    100006: Dubstep_Cube_Corner__simple_
+    100008: Dubstep_Cube_Corner_MeshPart0
+    100010: Dubstep_Cube_Corner_MeshPart1
+    100012: Player_Scale
+    100014: Dubstep_Cube_Corner-simple
+    100016: Dubstep_Cube_Corner-whole
+    400000: //RootNode
+    400002: Dubstep_Cube_2
+    400004: Dubstep_Cube_Corner
+    400006: Dubstep_Cube_Corner__simple_
+    400008: Dubstep_Cube_Corner_MeshPart0
+    400010: Dubstep_Cube_Corner_MeshPart1
+    400012: Player_Scale
+    400014: Dubstep_Cube_Corner-simple
+    400016: Dubstep_Cube_Corner-whole
+    2300000: Dubstep_Cube_2
+    2300002: Dubstep_Cube_Corner__simple_
+    2300004: Dubstep_Cube_Corner_MeshPart0
+    2300006: Dubstep_Cube_Corner_MeshPart1
+    2300008: Player_Scale
+    2300010: Dubstep_Cube_Corner-simple
+    2300012: Dubstep_Cube_Corner-whole
+    3300000: Dubstep_Cube_2
+    3300002: Dubstep_Cube_Corner__simple_
+    3300004: Dubstep_Cube_Corner_MeshPart0
+    3300006: Dubstep_Cube_Corner_MeshPart1
+    3300008: Player_Scale
+    3300010: Dubstep_Cube_Corner-simple
+    3300012: Dubstep_Cube_Corner-whole
+    4300000: Dubstep_Cube_Corner__simple_
+    4300002: Dubstep_Cube_2
+    4300004: Dubstep_Cube_Corner_MeshPart0
+    4300006: Dubstep_Cube_Corner_MeshPart1
+    4300008: Player_Scale
+    4300010: Dubstep_Cube_Corner-whole
+    4300012: Dubstep_Cube_Corner-simple
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
