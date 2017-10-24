@@ -40,6 +40,12 @@ ModelImporter:
     100064: Tesla_Coil
     100066: Tesla_Ring_1
     100068: Tesla_Ring_2
+    100070: Cover_Circle
+    100072: Experiment_01__Arm_
+    100074: Experiment_01__Head_
+    100076: Rocket_Launcher-Multi__Arm_
+    100078: Rocket_Launcher-Multi__Head_
+    100080: Rocket_Launcher__Single_
     400000: Bubble
     400002: Cube_Hull
     400004: Dome
@@ -75,6 +81,12 @@ ModelImporter:
     400064: Tesla_Coil
     400066: Tesla_Ring_1
     400068: Tesla_Ring_2
+    400070: Cover_Circle
+    400072: Experiment_01__Arm_
+    400074: Experiment_01__Head_
+    400076: Rocket_Launcher-Multi__Arm_
+    400078: Rocket_Launcher-Multi__Head_
+    400080: Rocket_Launcher__Single_
     2300000: Bubble
     2300002: Cube_Hull
     2300004: Dome
@@ -109,6 +121,12 @@ ModelImporter:
     2300062: Tesla_Coil
     2300064: Tesla_Ring_1
     2300066: Tesla_Ring_2
+    2300068: Cover_Circle
+    2300070: Experiment_01__Arm_
+    2300072: Experiment_01__Head_
+    2300074: Rocket_Launcher-Multi__Arm_
+    2300076: Rocket_Launcher-Multi__Head_
+    2300078: Rocket_Launcher__Single_
     3300000: Bubble
     3300002: Cube_Hull
     3300004: Dome
@@ -143,6 +161,12 @@ ModelImporter:
     3300062: Tesla_Coil
     3300064: Tesla_Ring_1
     3300066: Tesla_Ring_2
+    3300068: Cover_Circle
+    3300070: Experiment_01__Arm_
+    3300072: Experiment_01__Head_
+    3300074: Rocket_Launcher-Multi__Arm_
+    3300076: Rocket_Launcher-Multi__Head_
+    3300078: Rocket_Launcher__Single_
     4300000: Rocket
     4300002: Laser
     4300004: Giant_Hull
@@ -177,6 +201,12 @@ ModelImporter:
     4300062: Tesla_Coil
     4300064: Tesla_Ring_1
     4300066: Tesla_Ring_2
+    4300068: Rocket_Launcher-Multi__Arm_
+    4300070: Rocket_Launcher-Multi__Head_
+    4300072: Experiment_01__Arm_
+    4300074: Cover_Circle
+    4300076: Experiment_01__Head_
+    4300078: Rocket_Launcher__Single_
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -189,6 +219,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 

@@ -5,6 +5,6 @@ using UnityEngine.UI;
 public class VersionDisplay : MonoBehaviour {
 
 	void Start () {
-		GetComponent<Text> ().text = Connect.Version();
+		GetComponent<Text> ().text = Connect.Version;
 	}
 }

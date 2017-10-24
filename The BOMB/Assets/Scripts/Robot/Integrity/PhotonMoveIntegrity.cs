@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 [AddComponentMenu("Integrity/Movement Integrity", 2)]
 public class PhotonMoveIntegrity : MonoBehaviour, IntegrityInterface
@@ -15,13 +16,24 @@ public class PhotonMoveIntegrity : MonoBehaviour, IntegrityInterface
     void Start()
     {
         data = SaveBot.CurrentPresetData.movement;
+        
+        isBroken = false;
+    }
 
-        integrity = data.integrityMultiplier * GetComponentInParent<PhotonHullManager>().integrity;
+    private IEnumerator OnTransformParentChanged()
+    {
+        while (integrity == 0)
+        {
+            if(data != null)
+            {
+                integrity = data.integrityMultiplier * GetComponentInParent<PhotonHullManager>().integrity;
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
 
         HealthManager.moveHealthMax = integrity;
         HealthManager.moveHealth = integrity;
-
-        isBroken = false;
     }
 
     public void Die(PhotonPlayer killer)  //Don't actually die, just break the movement (reduce speed)
@@ -40,15 +52,12 @@ public class PhotonMoveIntegrity : MonoBehaviour, IntegrityInterface
     {
         if (!isBroken)
         {
-            integrity = integrity - dam;
-            
+            integrity -= dam;
+            HealthManager.moveHealth = integrity;
+
             if (integrity <= 0)
             {
                 Die(player);
-            }
-            else
-            {
-                HealthManager.moveHealth = integrity;
             }
         }
     }

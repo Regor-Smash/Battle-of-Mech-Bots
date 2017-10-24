@@ -89,7 +89,7 @@ public class PhotonHullManager : MonoBehaviour, IntegrityInterface
     [PunRPC]
     public void TakeDamage(float dam, PhotonPlayer player)
     {
-        integrity = integrity - dam;
+        integrity -= dam;
         if (integrity <= 0)
         {
             Die(player);

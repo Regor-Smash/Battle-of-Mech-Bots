@@ -1,26 +1,43 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Connect : MonoBehaviour {
+public class Connect : MonoBehaviour
+{
+    public static string Version
+    {
+        get
+        {
+            return "A3.0";
+        }
+    }
 
-	public static string Version() {
-		return "A3.0";
-	}
+    void Start()
+    {
+        if (PhotonNetwork.offlineMode || Options.isOffline)
+        {
+            PhotonNetwork.offlineMode = true;
+            OnConnectedToMaster();
+        }
+        else
+        {
+            PhotonNetwork.ConnectUsingSettings(Version);
+        }
+    }
 
-	void Start () {
-		if (PhotonNetwork.offlineMode || Options.isOffline) {
-			PhotonNetwork.offlineMode = true;
-			OnConnectedToMaster ();
-		} else {
-			PhotonNetwork.ConnectUsingSettings (Version());
-		}
-	}
+    private void OnPhotonFailedToConnectToMaster() //NOT WORKING YET
+    {
+        Debug.LogError("Could not connect to server. Going offline.");
 
-	void OnConnectedToMaster () {
-		PhotonNetwork.JoinRandomRoom();
-	}
+        PhotonNetwork.offlineMode = true;
+        OnConnectedToMaster();
+    }
 
-	void OnPhotonRandomJoinFailed () {
-		PhotonNetwork.CreateRoom ("Room");
-	}
+    void OnConnectedToMaster()
+    {
+        PhotonNetwork.JoinRandomRoom();
+    }
+
+    void OnPhotonRandomJoinFailed()
+    {
+        PhotonNetwork.CreateRoom("Room");
+    }
 }

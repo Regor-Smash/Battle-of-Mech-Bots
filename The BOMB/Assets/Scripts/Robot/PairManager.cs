@@ -67,4 +67,9 @@ public class PairManager : MonoBehaviour
         HealthManager.weaponRHealthMax = weapons[1 + x].GetComponent<PhotonWeaponIntegrity>().maxWeaponIntegrity;
         weapons[1 + x].BroadcastMessage("UpdateAmmo", SendMessageOptions.RequireReceiver);
     }
+
+    public void WeaponDied(int index)
+    {
+        weapons[index] = null;
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 [AddComponentMenu("Integrity/Wepaon Integrity", 3)]
 public class PhotonWeaponIntegrity : MonoBehaviour, IntegrityInterface
@@ -23,9 +24,23 @@ public class PhotonWeaponIntegrity : MonoBehaviour, IntegrityInterface
     void Start()
     {
         data = SaveBot.CurrentPresetData.weapons[wIndex];
+    }
 
-        maxWeaponIntegrity = data.integrityMultiplier * GetComponentInParent<PhotonHullManager>().integrity;
-        integrity = maxWeaponIntegrity;
+    private IEnumerator OnTransformParentChanged()
+    {
+        Debug.Log("a");
+        while (integrity == 0)
+        {
+            Debug.Log("b");
+            if (data != null)
+            {
+                maxWeaponIntegrity = data.integrityMultiplier * GetComponentInParent<PhotonHullManager>().integrity;
+                integrity = maxWeaponIntegrity;
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+
         isReady = true;
     }
 
@@ -35,6 +50,8 @@ public class PhotonWeaponIntegrity : MonoBehaviour, IntegrityInterface
         {
             ScoreKeeper.Score += ScoreKeeper.destroyPoints;
         }
+
+        GetComponentInParent<PairManager>().WeaponDied(wIndex);
 
         if (GetComponent<PhotonView>().isMine)
         {

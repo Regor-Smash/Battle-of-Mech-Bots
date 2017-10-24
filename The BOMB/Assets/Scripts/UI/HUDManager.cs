@@ -11,13 +11,13 @@ public class HUDManager : MonoBehaviour
     {
         HullInteg, MoveInteg, WLInteg, WRInteg, HullEnergy, WLAmmo, WRAmmo
     }
-
     public PartTypes partType;
 
     void Start()
     {
         bar = GetComponent<Slider>();
-        switch (partType)
+
+        /*switch (partType)
         {
             case PartTypes.HullInteg:
                 bar.maxValue = HealthManager.hullHealthMax;
@@ -43,7 +43,7 @@ public class HUDManager : MonoBehaviour
             default:
                 Debug.Log("Type enum on" + name + "does not match.");
                 break;
-        }
+        }*/
     }
 
     void Update()
@@ -51,9 +51,17 @@ public class HUDManager : MonoBehaviour
         switch (partType)
         {
             case PartTypes.HullInteg:
+                if (bar.maxValue == 0)
+                {
+                    bar.maxValue = HealthManager.hullHealthMax;
+                }
                 bar.value = HealthManager.hullHealth;
                 break;
             case PartTypes.MoveInteg:
+                if(bar.maxValue == 0)
+                {
+                    bar.maxValue = HealthManager.moveHealthMax;
+                }
                 bar.value = HealthManager.moveHealth;
                 break;
             case PartTypes.WLInteg:
@@ -65,6 +73,10 @@ public class HUDManager : MonoBehaviour
                 bar.value = HealthManager.weaponRHealth;
                 break;
             case PartTypes.HullEnergy:
+                if (bar.maxValue == 0)
+                {
+                    bar.maxValue = HealthManager.hullEnergyMax;
+                }
                 bar.value = HealthManager.hullEnergy;
                 break;
             case PartTypes.WLAmmo:
