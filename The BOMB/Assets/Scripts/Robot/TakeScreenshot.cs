@@ -7,7 +7,7 @@ public class TakeScreenshot : MonoBehaviour {
 
 	void Update () {
 		if (Input.GetButtonDown ("Screenshot")) {
-			Application.CaptureScreenshot ("BOMB-screenshot" + PicNum + ".png");
+			ScreenCapture.CaptureScreenshot ("BOMB-screenshot" + PicNum + ".png");
 			PicNum = PicNum + 1;
 			Debug.Log ("Screenshot saved");
 		}

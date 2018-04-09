@@ -15,7 +15,7 @@ public class PhotonIntegrity : MonoBehaviour, IntegrityInterface
 
     public void Die(PhotonPlayer killer)
     {
-        if (scoreable && killer != null && killer.isLocal)
+        if (scoreable && killer != null && killer.IsLocal)
         {
             ScoreKeeper.Score += ScoreKeeper.destroyPoints;
         }

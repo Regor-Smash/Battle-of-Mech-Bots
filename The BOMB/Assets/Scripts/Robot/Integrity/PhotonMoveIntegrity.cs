@@ -38,7 +38,7 @@ public class PhotonMoveIntegrity : MonoBehaviour, IntegrityInterface
 
     public void Die(PhotonPlayer killer)  //Don't actually die, just break the movement (reduce speed)
     {
-        if (killer != null && killer.isLocal)
+        if (killer != null && killer.IsLocal)
         {
             ScoreKeeper.Score += ScoreKeeper.destroyPoints;
         }

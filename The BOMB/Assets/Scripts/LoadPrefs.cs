@@ -16,7 +16,7 @@ public class LoadPrefs : MonoBehaviour
 #endif
 
         //Load username
-        PhotonNetwork.player.name = Helper.Prefs.GetString("Username");
+        PhotonNetwork.player.NickName = Helper.Prefs.GetString("Username");
 
         //Load bot presets
         SaveBot.LoadPresets();

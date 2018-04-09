@@ -21,8 +21,8 @@ public class LeavingBattle : MonoBehaviour
 
     void Start()
     {
-        timerPanel = GetComponent<PhotonHullManager>().HUD.transform.FindChild("Leaving Battlefield Panel").gameObject;
-        countdown = timerPanel.transform.FindChild("Countdown Text").GetComponent<Text>();
+        timerPanel = GetComponent<PhotonHullManager>().HUD.transform.Find("Leaving Battlefield Panel").gameObject;
+        countdown = timerPanel.transform.Find("Countdown Text").GetComponent<Text>();
     }
 
 	void LeaveBattle()

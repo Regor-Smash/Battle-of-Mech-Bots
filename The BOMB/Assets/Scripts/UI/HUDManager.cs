@@ -84,13 +84,13 @@ public class HUDManager : MonoBehaviour
                 bar.value = HealthManager.weaponLAmmo;
                 if (HealthManager.weaponLUseEnergy)
                 {
-                    transform.FindChild("Background").gameObject.SetActive(false);
-                    transform.FindChild("Fill Area").gameObject.SetActive(false);
+                    transform.Find("Background").gameObject.SetActive(false);
+                    transform.Find("Fill Area").gameObject.SetActive(false);
                 }
                 else
                 {
-                    transform.FindChild("Background").gameObject.SetActive(true);
-                    transform.FindChild("Fill Area").gameObject.SetActive(true);
+                    transform.Find("Background").gameObject.SetActive(true);
+                    transform.Find("Fill Area").gameObject.SetActive(true);
                 }
                 break;
             case PartTypes.WRAmmo:
@@ -98,13 +98,13 @@ public class HUDManager : MonoBehaviour
                 bar.value = HealthManager.weaponRAmmo;
                 if (HealthManager.weaponRUseEnergy)
                 {
-                    transform.FindChild("Background").gameObject.SetActive(false);
-                    transform.FindChild("Fill Area").gameObject.SetActive(false);
+                    transform.Find("Background").gameObject.SetActive(false);
+                    transform.Find("Fill Area").gameObject.SetActive(false);
                 }
                 else
                 {
-                    transform.FindChild("Background").gameObject.SetActive(true);
-                    transform.FindChild("Fill Area").gameObject.SetActive(true);
+                    transform.Find("Background").gameObject.SetActive(true);
+                    transform.Find("Fill Area").gameObject.SetActive(true);
                 }
                 break;
             default:

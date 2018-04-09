@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MoveTemplate : MonoBehaviour
+public abstract class MoveTemplate : MonoBehaviour
 {
     protected MovementData data;
     protected Rigidbody hullRG;
