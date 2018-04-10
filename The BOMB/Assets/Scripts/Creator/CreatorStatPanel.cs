@@ -8,13 +8,13 @@ public class CreatorStatPanel : MonoBehaviour
     
     void Awake()
     {
-        SaveBot.HullUpdate += UpdateHullStats;
-        SaveBot.MoveUpdate += UpdateMoveStats;
-        SaveBot.GadgetUpdate += UpdateGadgetStats;
-        SaveBot.LeftWeaponUpdate += UpdateWeaponLStats;
-        SaveBot.RightWeaponUpdate += UpdateWeaponRStats;
+        CreatorManager.HullUpdate += UpdateHullStats;
+        CreatorManager.MoveUpdate += UpdateMoveStats;
+        CreatorManager.GadgetUpdate += UpdateGadgetStats;
+        CreatorManager.LeftWeaponUpdate += UpdateWeaponLStats;
+        CreatorManager.RightWeaponUpdate += UpdateWeaponRStats;
 
-        SaveBot.TypeUpdate += UpdateType;
+        CreatorManager.TypeUpdate += UpdateType;
     }
 
     public void UpdateType(string type)
@@ -92,7 +92,7 @@ public class CreatorStatPanel : MonoBehaviour
 
     void UpdateWeaponLStats()
     {
-        if (SaveBot.activePart == "WeaponL")
+        if (CreatorManager.activePart == "WeaponL")
         {
             WeaponData data = SaveBot.CurrentPresetData.weapons[1 + CreatorPairer.indexAdjust];
             title.text = data.partName;
@@ -140,7 +140,7 @@ public class CreatorStatPanel : MonoBehaviour
 
     void UpdateWeaponRStats()
     {
-        if (SaveBot.activePart == "WeaponR")
+        if (CreatorManager.activePart == "WeaponR")
         {
             WeaponData data = SaveBot.CurrentPresetData.weapons[0 + CreatorPairer.indexAdjust];
             title.text = data.partName;
@@ -188,12 +188,12 @@ public class CreatorStatPanel : MonoBehaviour
 
     private void OnDestroy()
     {
-        SaveBot.HullUpdate -= UpdateHullStats;
-        SaveBot.MoveUpdate -= UpdateMoveStats;
-        SaveBot.GadgetUpdate -= UpdateGadgetStats;
-        SaveBot.LeftWeaponUpdate -= UpdateWeaponLStats;
-        SaveBot.RightWeaponUpdate -= UpdateWeaponRStats;
+        CreatorManager.HullUpdate -= UpdateHullStats;
+        CreatorManager.MoveUpdate -= UpdateMoveStats;
+        CreatorManager.GadgetUpdate -= UpdateGadgetStats;
+        CreatorManager.LeftWeaponUpdate -= UpdateWeaponLStats;
+        CreatorManager.RightWeaponUpdate -= UpdateWeaponRStats;
 
-        SaveBot.TypeUpdate -= UpdateType;
+        CreatorManager.TypeUpdate -= UpdateType;
     } 
 }

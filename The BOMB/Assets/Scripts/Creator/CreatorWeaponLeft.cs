@@ -6,7 +6,7 @@ public class CreatorWeaponLeft : MonoBehaviour
 
     void Awake()
     {
-        SaveBot.LeftWeaponUpdate += UpdateWeaponL;
+        CreatorManager.LeftWeaponUpdate += UpdateWeaponL;
     }
 
     void UpdateWeaponL()
@@ -22,6 +22,6 @@ public class CreatorWeaponLeft : MonoBehaviour
 
     private void OnDestroy()
     {
-        SaveBot.LeftWeaponUpdate -= UpdateWeaponL;
+        CreatorManager.LeftWeaponUpdate -= UpdateWeaponL;
     }
 }

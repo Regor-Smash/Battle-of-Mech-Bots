@@ -9,7 +9,7 @@ public class CreatorPairer : MonoBehaviour
     
     void Awake()
     {
-        SaveBot.PairUpdate += UpdatePair;
+        CreatorManager.PairUpdate += UpdatePair;
     }
 
     void UpdatePair()
@@ -23,7 +23,7 @@ public class CreatorPairer : MonoBehaviour
 
         pairText.text = "Pair: " + (currentPair + 1) + "/" + SaveBot.CurrentPresetData.hull.maxPairs;
 
-        SaveBot.WeaponUpdates();
+        CreatorManager.WeaponUpdates();
     }
 
     public void ChangePair(bool increase)
@@ -34,6 +34,6 @@ public class CreatorPairer : MonoBehaviour
 
     private void OnDestroy()
     {
-        SaveBot.PairUpdate -= UpdatePair;
+        CreatorManager.PairUpdate -= UpdatePair;
     }
 }

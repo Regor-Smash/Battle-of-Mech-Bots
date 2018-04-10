@@ -6,7 +6,7 @@ public class CreatorMovement : MonoBehaviour
 
     void Awake()
     {
-        SaveBot.MoveUpdate += UpdateMovement;
+        CreatorManager.MoveUpdate += UpdateMovement;
     }
 
     void UpdateMovement()
@@ -20,6 +20,6 @@ public class CreatorMovement : MonoBehaviour
 
     private void OnDestroy()
     {
-        SaveBot.MoveUpdate -= UpdateMovement;
+        CreatorManager.MoveUpdate -= UpdateMovement;
     }
 }

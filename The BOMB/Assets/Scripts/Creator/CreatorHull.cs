@@ -6,7 +6,7 @@ public class CreatorHull : MonoBehaviour
     
     void Awake()
     {
-        SaveBot.HullUpdate += UpdateHull;
+        CreatorManager.HullUpdate += UpdateHull;
     }
 
     void UpdateHull()
@@ -20,6 +20,6 @@ public class CreatorHull : MonoBehaviour
 
     private void OnDestroy()
     {
-        SaveBot.HullUpdate -= UpdateHull;
+        CreatorManager.HullUpdate -= UpdateHull;
     }
 }

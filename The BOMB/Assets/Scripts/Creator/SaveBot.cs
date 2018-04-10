@@ -1,17 +1,29 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.UI;
 
 public class SaveBot : MonoBehaviour
 {
-    static PresetHolder[] presets = new PresetHolder[5];
-    static int currentPreset;   //Between 0 and 4
-
-    static PresetHolder DefaultPreset()
+    static BotOutline[] presets = new BotOutline[5];
+    static int presetIndex;   //Between 0 and 4
+    static BotOutline currentPreset
     {
-        PresetHolder temp = new PresetHolder();
+        get
+        {
+            return presets[presetIndex];
+        }
+
+        set
+        {
+            presets[presetIndex] = value;
+            resetCurrentData();
+        }
+    }
+
+    static BotOutline DefaultPreset()
+    {
+        BotOutline temp = new BotOutline();
 
         temp.hull = "Dome";
         temp.movement = "Treads";
@@ -21,28 +33,28 @@ public class SaveBot : MonoBehaviour
         return temp;
     }
 
-    static PresetData loadedData;
-    public static PresetData CurrentPresetData
+    static BotData loadedData;
+    public static BotData CurrentPresetData
     {
         get
         {
             if (loadedData == null)
             {
-                if (presets[currentPreset] == null)
+                if (currentPreset == null)
                 {
                     LoadPresets();
                 }
-                if (presets[currentPreset] != null)
+                if (currentPreset != null)
                 {
-                    loadedData = new PresetData();
+                    loadedData = new BotData();
 
                     //Debug.Log("Loading current preset.");
-                    loadedData.hull = Resources.Load<HullData>("Part Database/Hulls/" + presets[currentPreset].hull);
-                    loadedData.movement = Resources.Load<MovementData>("Part Database/Movements/" + presets[currentPreset].movement);
-                    loadedData.gadget = Resources.Load<GadgetData>("Part Database/Gadgets/" + presets[currentPreset].gadget);
-                    for (int a = 0; a < presets[currentPreset].weapons.Count; a++)
+                    loadedData.hull = Resources.Load<HullData>("Part Database/Hulls/" + currentPreset.hull);
+                    loadedData.movement = Resources.Load<MovementData>("Part Database/Movements/" + currentPreset.movement);
+                    loadedData.gadget = Resources.Load<GadgetData>("Part Database/Gadgets/" + currentPreset.gadget);
+                    for (int a = 0; a < currentPreset.weapons.Count; a++)
                     {
-                        loadedData.weapons.Add(Resources.Load<WeaponData>("Part Database/Weapons/" + presets[currentPreset].weapons[a]));
+                        loadedData.weapons.Add(Resources.Load<WeaponData>("Part Database/Weapons/" + currentPreset.weapons[a]));
                     }
 
                     return loadedData;
@@ -59,39 +71,17 @@ public class SaveBot : MonoBehaviour
             }
         }
     }
-    
-    public static string activePart { get; private set; }
-    public Text presetText;
-
-    public delegate void PartUpdate();
-    public static event PartUpdate HullUpdate;
-    public static event PartUpdate MoveUpdate;
-    public static event PartUpdate GadgetUpdate;
-    public static event PartUpdate PairUpdate;
-    public static event PartUpdate LeftWeaponUpdate;
-    public static event PartUpdate RightWeaponUpdate;
-
-    public delegate void PartTypeUpdate(string type);
-    public static event PartTypeUpdate TypeUpdate;
-
-    public static void WeaponUpdates()
+    public static void resetCurrentData()
     {
-        if (LeftWeaponUpdate == null || RightWeaponUpdate == null)
-        {
-            Debug.LogError("No left or right updates recievers found.");
-            WeaponUpdates();
-        }
-        else
-        {
-            LeftWeaponUpdate();
-            RightWeaponUpdate();
-        }
+        loadedData = null;
     }
+
+    public Text presetText;
 
 #if UNITY_EDITOR
     void Awake()
     {
-        if (presets[currentPreset] == null)
+        if (currentPreset == null)
         {
             Debug.Log("Loading presets for editor play mode.");
             LoadPresets();
@@ -102,7 +92,7 @@ public class SaveBot : MonoBehaviour
 
     void Start()
     {
-        ChangeToPreset(currentPreset);
+        ChangeToPreset(presetIndex);
     }
 
     public static void LoadPresets() {
@@ -112,7 +102,7 @@ public class SaveBot : MonoBehaviour
                 FileStream presetFile = File.Open(Application.persistentDataPath + "/Preset" + a, FileMode.Open);
                 BinaryFormatter biForm = new BinaryFormatter();
 
-                presets[a] = (PresetHolder)biForm.Deserialize(presetFile);
+                presets[a] = (BotOutline)biForm.Deserialize(presetFile);
                 presetFile.Close();
             } else {
                 Debug.LogError("Preset #" + a + " not found! Recreating all presets.");
@@ -124,10 +114,10 @@ public class SaveBot : MonoBehaviour
 
     //Save one preset at a time
     public void SaveCurrentPreset() {
-        FileStream presetFile = File.Create(Application.persistentDataPath + "/Preset" + currentPreset);
+        FileStream presetFile = File.Create(Application.persistentDataPath + "/Preset" + presetIndex);
         BinaryFormatter biForm = new BinaryFormatter();
 
-        biForm.Serialize(presetFile, presets[currentPreset]);
+        biForm.Serialize(presetFile, currentPreset);
         presetFile.Close();
     }
 
@@ -150,219 +140,68 @@ public class SaveBot : MonoBehaviour
 
     public void ChangeToPreset (int val)
     {
-        currentPreset = val--;
+        presetIndex = val--;
         ChangePreset(true);
     }
 
     public void ChangePreset(bool increase)
     {
-        Helper.ChangeIndexNum(5, currentPreset, increase);
-        loadedData = null;
+        Helper.ChangeIndexNum(5, presetIndex, increase);
+        resetCurrentData();
 
-        presetText.text = "Preset " + (currentPreset + 1) + ", " + presets[currentPreset].presetName;
+        presetText.text = "Preset " + (presetIndex + 1) + ", " + currentPreset.presetName;
 
-        BroadcastPartUpdate(PartTypes.Hull);
-        BroadcastPartUpdate(PartTypes.Movement);
-        BroadcastPartUpdate(PartTypes.Gadget);
-        BroadcastPartUpdate(PartTypes.Pair);
-    }
+        //CreatorManager.HullUpdate();
 
-    public void ChangeActivePartType(string type)
-    {
-        /*if (type == PartTypes.Hull)
-        {
-            activePart = type;
-        }
-        else if(type == PartTypes.Movement)
-        {
-            activePart = type;
-        }
-        else if (type == PartTypes.LeftWeapon)
-        {
-            activePart = type;
-        }
-        else if (type == PartTypes.RightWeapon)
-        {
-            activePart = type;
-        }
-        else if (type == PartTypes.Gadget)
-        {
-            activePart = type;
-        }
-        else if (type == null)
-        {
-            activePart = type;
-        }*/
-
-        activePart = type;
-        TypeUpdate(activePart);
-    }
-
-    public void ChangeToPart(int num)
-    {
-        PartList list = Resources.Load<PartList>("Part Database/Master List");
-
-        switch (activePart)
-        {
-            case PartTypes.Hull:
-                presets[currentPreset].hull = list.allHulls[num].name;
-                
-                //Make sure pairs match the pairs of the new hull
-                if (presets[currentPreset].weapons.Count < CurrentPresetData.hull.maxPairs * 2)
-                {
-                    //Debug.Log("Filing in extra spaces in pairs");
-                    for (int x = presets[currentPreset].weapons.Count; x < (CurrentPresetData.hull.maxPairs * 2); x++)
-                    {
-                        presets[currentPreset].weapons.Add("Drill");
-                    }
-                }
-                else if (presets[currentPreset].weapons.Count > CurrentPresetData.hull.maxPairs * 2)
-                {
-                    //Debug.Log("Removing extra spaces in pairs.");
-                    int totalW = CurrentPresetData.hull.maxPairs * 2;
-                    int wDif = presets[currentPreset].weapons.Count - totalW;
-
-                    presets[currentPreset].weapons.RemoveRange(totalW, wDif);
-                }
-                loadedData = null;
-
-                PairUpdate();
-                HullUpdate();
-                //BroadcastPartUpdate("Hull");
-                break;
-            case PartTypes.Movement:
-                presets[currentPreset].movement = list.allMovements[num].name;
-                
-                MoveUpdate();
-                //BroadcastPartUpdate("Movement");
-                break;
-            case PartTypes.LeftWeapon:
-                presets[currentPreset].weapons[1 + CreatorPairer.indexAdjust] = list.allWeapons[num].name;
-
-                LeftWeaponUpdate();
-                break;
-            case PartTypes.RightWeapon:
-                presets[currentPreset].weapons[0 + CreatorPairer.indexAdjust] = list.allWeapons[num].name;
-
-                RightWeaponUpdate();
-                break;
-            case PartTypes.Gadget:
-                presets[currentPreset].gadget = list.allGadets[num].name;
-                
-                GadgetUpdate();
-                //BroadcastPartUpdate("Gadget");
-                break;
-            default:
-                Debug.LogError("No correct part type for activePart=" + activePart + " found!");
-                break;
-        }
-    }
-
-    public void ChangePart(bool increasing)
-    {
-        PartList list = Resources.Load<PartList>("Part Database/Master List");
-        int a;
-
-        switch (activePart)
-        {
-            case PartTypes.Hull:
-                a = list.allHulls.IndexOf(CurrentPresetData.hull);
-                loadedData = null;
-                a = Helper.ChangeIndexNum(list.allHulls.Count, a, increasing);
-
-                ChangeToPart(a);
-                break;
-            case PartTypes.Movement:
-                a = list.allMovements.IndexOf(CurrentPresetData.movement);
-                loadedData = null;
-                a = Helper.ChangeIndexNum(list.allMovements.Count, a, increasing);
-
-                ChangeToPart(a);
-                break;
-            case PartTypes.LeftWeapon:
-                a = list.allWeapons.IndexOf(CurrentPresetData.weapons[1 + CreatorPairer.indexAdjust]);
-                loadedData = null;
-                a = Helper.ChangeIndexNum(list.allWeapons.Count, a, increasing);
-
-                ChangeToPart(a);
-                break;
-            case PartTypes.RightWeapon:
-                a = list.allWeapons.IndexOf(CurrentPresetData.weapons[0 + CreatorPairer.indexAdjust]);
-                loadedData = null;
-                a = Helper.ChangeIndexNum(list.allWeapons.Count, a, increasing);
-
-                ChangeToPart(a);
-                break;
-            case PartTypes.Gadget:
-                a = list.allGadets.IndexOf(CurrentPresetData.gadget);
-                loadedData = null;
-                a = Helper.ChangeIndexNum(list.allGadets.Count, a, increasing);
-
-                ChangeToPart(a);
-                break;
-            default:
-                Debug.LogError("No correct part type for activePart=" + activePart + " found!");
-                break;
-        }
-    }
-
-    public void BroadcastPartUpdate(string changePartType)  //SHOULD PROBABLY REPLACE THIS
-    {
-        //if (changePart != PartTypes)
-        string message = "Update" + changePartType;
-        BroadcastMessage(message, SendMessageOptions.RequireReceiver);
     }
 
     public void SetPressetName (string newName)
     {
-        presets[currentPreset].presetName = newName;
-        ChangeToPreset(currentPreset);
+        currentPreset.presetName = newName;
+        ChangeToPreset(presetIndex);
     }
 
-    //Old code. probably delete all of it
-    /*
-    void Awake () {
-		hulls.value = Hull;
-		movements.value = Movement;
-		weaponsL.value = Weapons [0];
-		weaponsR.value = Weapons [1];
-	}
+    public static void SetHull(string name)
+    {
+        currentPreset.hull = name;
 
-	void Update () {
-		x = 2 * (pairNum - 1);
-	}
+        //Make sure pairs match the pairs of the new hull
+        if (currentPreset.weapons.Count < CurrentPresetData.hull.maxPairs * 2)
+        {
+            //Debug.Log("Filing in extra spaces in pairs");
+            for (int x = currentPreset.weapons.Count; x < (CurrentPresetData.hull.maxPairs * 2); x++)
+            {
+                currentPreset.weapons.Add("Drill");
+            }
+        }
+        else if (currentPreset.weapons.Count > CurrentPresetData.hull.maxPairs * 2)
+        {
+            //Debug.Log("Removing extra spaces in pairs.");
+            int totalW = SaveBot.CurrentPresetData.hull.maxPairs * 2;
+            int wDif = currentPreset.weapons.Count - totalW;
 
-	public void HullValue () {
-		Hull = hulls.value;
-		PlayerPrefs.SetInt ("Hull", Hull);
-	}
+            currentPreset.weapons.RemoveRange(totalW, wDif);
+        }
+        resetCurrentData();
+    }
 
-	public void PairValue () {
-		pairNum = pair.value + 1;
-		weaponsL.value = Weapons [0 + x];
-		weaponsR.value = Weapons [1 + x];
-	}
+    public static void SetMovement(string name)
+    {
+        currentPreset.movement = name;
+    }
 
-	public void WLValue () {
-		Weapons [0 + x] = weaponsL.value;
-	}
+    public static void SetLeftWeapon(string name)
+    {
+        currentPreset.weapons[1 + CreatorPairer.indexAdjust] = name;
+    }
 
-	public void WRValue () {
-		Weapons [1 + x] = weaponsR.value;
-	}
+    public static void SetRightWeapon(string name)
+    {
+        currentPreset.weapons[0 + CreatorPairer.indexAdjust] = name;
+    }
 
-	public void MoveValue () {
-		Movement = movements.value;
-		PlayerPrefs.SetInt ("Movement", Movement);
-	}*/
-}
+    public static void SetGadget(string name)
+    {
 
-public class PresetData
-{
-    public string presetName;
-
-    public HullData hull;
-    public MovementData movement;
-    public List<WeaponData> weapons = new List<WeaponData>();
-    public GadgetData gadget;
+    }
 }

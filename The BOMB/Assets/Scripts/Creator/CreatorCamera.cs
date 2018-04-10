@@ -8,16 +8,23 @@ public class CreatorCamera : MonoBehaviour
     public int currentPosition;
     public static bool isFullView;
 
-    float a;
+    private float transitionTemp;
     public float transitionSpeed;
 
     public GameObject fullViewSelecter;
     public Button[] specificViewButtons;
 
+    private CreatorManager creatorMang;
+
+    private void Awake()
+    {
+        creatorMang = FindObjectOfType<CreatorManager>();
+    }
+
     public void ChangeCameraView(int view)
     {
         currentPosition = view;
-        a = 0;
+        transitionTemp = 0;
 
         if (currentPosition == 0)
         {
@@ -28,7 +35,7 @@ public class CreatorCamera : MonoBehaviour
                 butt.interactable = false;
             }
 
-            FindObjectOfType<SaveBot>().ChangeActivePartType("none");
+            creatorMang.ChangeActivePartType("none");
         }
         else
         {
@@ -49,18 +56,18 @@ public class CreatorCamera : MonoBehaviour
 
     void TrainsitionTransform()
     {
-        transform.position = Vector3.Lerp(transform.position, camPositions[currentPosition].position, a);
-        transform.rotation = Quaternion.Lerp(transform.rotation, camPositions[currentPosition].rotation, a);
+        transform.position = Vector3.Lerp(transform.position, camPositions[currentPosition].position, transitionTemp);
+        transform.rotation = Quaternion.Lerp(transform.rotation, camPositions[currentPosition].rotation, transitionTemp);
 
-        if (a >= 1)
+        if (transitionTemp >= 1)
         {
             //Debug.Log("Reseting camera transition.");
             CancelInvoke("TrainsitionTransform");
-            a = 0;
+            transitionTemp = 0;
         }
         else
         {
-            a += transitionSpeed;
+            transitionTemp += transitionSpeed;
         }
     }
 }

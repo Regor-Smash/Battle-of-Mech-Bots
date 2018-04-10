@@ -9,7 +9,7 @@ public class CreatorGadget : MonoBehaviour
 
     void Awake()
     {
-        SaveBot.GadgetUpdate += UpdateGadget;
+        CreatorManager.GadgetUpdate += UpdateGadget;
     }
 
     void UpdateGadget()
@@ -24,6 +24,6 @@ public class CreatorGadget : MonoBehaviour
 
     private void OnDestroy()
     {
-        SaveBot.GadgetUpdate -= UpdateGadget;
+        CreatorManager.GadgetUpdate -= UpdateGadget;
     }
 }
